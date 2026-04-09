@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ movie.title }}
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container">
+		<div class="card mb-4 p-3">
+			<h5 class="">{{ movie.title }}</h5>
+            <p><em>"{{ movie.synopsis }}"</em></p>
+			<p class="">Réalisateur :
+				<strong>
+					<em>{{ movie.director.firstName }}
+						{{ movie.director.lastName }}</em>
+				</strong>
+			</p>
+            <p>Genre : <strong><em>{{ movie.genre }}</em></strong></p>
+			<p>Année de sortie :
+				<strong>
+					<em>{{ movie.releaseYear }}</em>
+				</strong>
+			</p>
+			<a class="btn btn-info shadow-sm" href="{{path('app_movie') }}">Retour à la liste des films</a>
+		</div>
+	</div>
+{% endblock %}

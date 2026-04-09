@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ director.firstName }}
+	{{ director.lastName }}
+{% endblock %}
+
+{% block body %}
+
+	<h1></h1>
+
+	<div class="container">
+		<div class="card mb-4 p-3">
+			<h5 class="">{{ director.firstName }}
+				{{ director.lastName }}</h5>
+			<p class="">Nationalité :
+				<strong>
+					<em>{{ director.nationality }}</em>
+				</strong>
+			</p>
+			<a class="btn btn-info shadow-sm" href="{{path('app_director') }}">Retour aux réalisateurs</a>
+		</div>
+	</div>
+{% endblock %}

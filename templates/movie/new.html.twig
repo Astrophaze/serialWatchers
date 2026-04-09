@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau film
+{% endblock %}
+
+{% block body %}
+	<h1>Ajouter un film</h1>
+
+	{{ form_start(form) }}
+	{{ form_row(form.title) }}
+	{{ form_row(form.synopsis) }}
+	{{ form_row(form.releaseYear) }}
+	{{ form_row(form.genre) }}
+	{{ form_row(form.director) }}
+	<button type="submit">Enregistrer</button>
+	{{ form_end(form) }}
+{% endblock %}

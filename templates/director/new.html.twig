@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau réalisateur
+{% endblock %}
+
+{% block body %}
+	<h1>Ajouter un réalisateur</h1>
+
+	{{ form_start(form) }}
+	{{ form_row(form.firstName) }}
+	{{ form_row(form.lastName) }}
+	{{ form_row(form.nationality) }}
+	<button type="submit">Enregistrer</button>
+	{{ form_end(form) }}
+{% endblock %}
