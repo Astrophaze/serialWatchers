@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,19 +16,26 @@ class Movie
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 150)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $synopsis = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\GreaterThan(1888)]
+    #[Assert\LessThanOrEqual(value: 2026)]
     private ?int $releaseYear = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
     private ?string $genre = null;
 
     #[ORM\ManyToOne(inversedBy: 'movies')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull]
     private ?Director $director = null;
 
     public function getId(): ?int

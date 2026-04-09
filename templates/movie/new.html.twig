@@ -4,14 +4,30 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Ajouter un film</h1>
+	<div class="d-flex justify-content-center py-5">
+		<div class="card border-0 shadow bg-light">
+			<div class="p-5">
+				<h1 class="mb-4">Ajouter un film</h1>
 
-	{{ form_start(form) }}
-	{{ form_row(form.title) }}
-	{{ form_row(form.synopsis) }}
-	{{ form_row(form.releaseYear) }}
-	{{ form_row(form.genre) }}
-	{{ form_row(form.director) }}
-	<button type="submit">Enregistrer</button>
-	{{ form_end(form) }}
+				{{ form_start(form) }}
+				<div class="mb-3">
+					{{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_row(form.synopsis, {'attr': {'class': 'form-control', 'rows': '4'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_row(form.releaseYear, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_row(form.genre, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_row(form.director, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<button type="submit" class="btn btn-success w-100">Enregistrer</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

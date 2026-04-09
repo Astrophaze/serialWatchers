@@ -4,12 +4,24 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Ajouter un réalisateur</h1>
+	<div class="d-flex justify-content-center py-5">
+		<div class="card border-0 shadow bg-light">
+			<div class="p-5">
+				<h1 class="mb-4">Ajouter un réalisateur</h1>
 
-	{{ form_start(form) }}
-	{{ form_row(form.firstName) }}
-	{{ form_row(form.lastName) }}
-	{{ form_row(form.nationality) }}
-	<button type="submit">Enregistrer</button>
-	{{ form_end(form) }}
+				{{ form_start(form) }}
+				<div class="mb-3">
+					{{ form_row(form.firstName, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_row(form.lastName, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_row(form.nationality, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<button type="submit" class="btn btn-success w-100">Enregistrer</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}
