@@ -16,7 +16,7 @@ class Movie
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Le titre est obligatoire.')]
     #[Assert\Length(max: 150)]
     private ?string $title = null;
 
@@ -24,18 +24,18 @@ class Movie
     private ?string $synopsis = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
-    #[Assert\GreaterThan(1888)]
-    #[Assert\LessThanOrEqual(value: 2026)]
+    #[Assert\NotBlank(message: 'L\'année de sortie est obligatoire.')]
+    #[Assert\GreaterThan(1900, message: 'L\'année de sortie doit être supérieure à 1900.')]
+    #[Assert\LessThanOrEqual(value: 2026, message: 'L\'année de sortie doit être inférieure ou égale à 2026.')]
     private ?int $releaseYear = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Le genre est obligatoire.')]
     private ?string $genre = null;
 
     #[ORM\ManyToOne(inversedBy: 'movies')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotNull]
+    #[Assert\NotNull(message: 'Le réalisateur est obligatoire.')]
     private ?Director $director = null;
 
     public function getId(): ?int

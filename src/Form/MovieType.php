@@ -32,7 +32,6 @@ class MovieType extends AbstractType
                 'choice_label' => function (Director $director) {
                     return $director->getFirstName() . ' ' . $director->getLastName();
                 },
-                'choice_value' => 'id',
                 'label' => 'Director',
             ])
         ;

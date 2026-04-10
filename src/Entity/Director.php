@@ -17,17 +17,17 @@ class Director
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Le prénom est obligatoire.')]
     #[Assert\Length(max: 100)]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Le nom est obligatoire.')]
     #[Assert\Length(max: 100)]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'La nationalité est obligatoire.')]
     private ?string $nationality = null;
 
     /**
