@@ -2,40 +2,63 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MovieRepository;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    normalizationContext: ['groups' => ['movie:read']],
+)]
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
+#[ApiFilter(SearchFilter::class, properties: [
+    'genre' => 'exact',
+    'director' => 'exact',
+])]
 class Movie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('movie:read')]
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
     #[Assert\NotBlank(message: 'Le titre est obligatoire.')]
     #[Assert\Length(max: 150)]
+    #[Groups(['director:read', 'movie:read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['movie:read'])]
     private ?string $synopsis = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'L\'année de sortie est obligatoire.')]
     #[Assert\GreaterThan(1900, message: 'L\'année de sortie doit être supérieure à 1900.')]
     #[Assert\LessThanOrEqual(value: 2026, message: 'L\'année de sortie doit être inférieure ou égale à 2026.')]
+    #[Groups(['director:read', 'movie:read'])]
     private ?int $releaseYear = null;
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank(message: 'Le genre est obligatoire.')]
+    #[Groups(['movie:read'])]
     private ?string $genre = null;
 
     #[ORM\ManyToOne(inversedBy: 'movies')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull(message: 'Le réalisateur est obligatoire.')]
+    #[Groups(['movie:read'])]
     private ?Director $director = null;
 
     public function getId(): ?int
